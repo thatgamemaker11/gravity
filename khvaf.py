@@ -4,19 +4,7 @@ import random
 pygame.init()
 screen = pygame.display.set_mode((1920, 1080))
 clock = pygame.time.Clock()
-Rsize = random.choice(
-[
-    20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
-    30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
-    40, 41, 42, 43, 44, 45, 46, 47, 48, 49,
-    50, 51, 52, 53, 54, 55, 56, 57, 58, 59,
-    60, 61, 62, 63, 64, 65, 66, 67, 68, 69,
-    70, 71, 72, 73, 74, 75, 76, 77, 78, 79,
-    80, 81, 82, 83, 84, 85, 86, 87, 88, 89,
-    90, 91, 92, 93, 94, 95, 96, 97, 98, 99,
-    100
-]
-)
+Rsize = random.randint(50,100)
 # Rocket and game settings
 rocket_size = (20, 40)
 Rock_size = (Rsize,Rsize)
@@ -29,8 +17,8 @@ shoot_cooldown = 250  # milliseconds
 bg_color = (10, 10, 30)
 
 # Rock position and velocity
-pos = pygame.Vector2(random.randint(0, 1920), random.randint(0, 1080))
-vel = pygame.Vector2(random.choice([-1, 1])*10000/Rsize, random.choice([-1, 1])*6000/Rsize)
+pos = pygame.Vector2(100, 100)
+vel = pygame.Vector2(100, 60)
 
 # Colors
 rocket_color_1 = (255, 100, 100)
@@ -123,14 +111,10 @@ while running:
 
     # ---- Update Rock ----
     pos += vel * dt
-    if pos.x < 0 :
-        pos.x = 2100
-    elif pos.x > 2100:
-        pos.x = 0
-    if pos.y < 0:
-        pos.y = 1200
-    elif pos.y > 1200:
-        pos.y = 0
+    if pos.x < 0 or pos.x > 1920:
+        vel.x *= -1
+    if pos.y < 0 or pos.y > 1080:
+        vel.y *= -1
 
     # ---- Bullet Updates and Collision Detection ----
     for player, opponent in [(player1, player2), (player2, player1)]:
@@ -147,7 +131,6 @@ while running:
                     opponent["hits"] += 1
                 else:
                     new_bullets.append(bullet)
-
         player["bullets"] = new_bullets
 
     # ---- Drawing ----
@@ -183,12 +166,6 @@ while running:
     # Draw hit counters
     font = pygame.font.SysFont(None, 48)
     hit_text1 = font.render(f"Player 1 Hits: {player1['hits']}", True, rocket_color_1)
-    if player1['hits'] == 10:
-        print("P2 WINS")
-        exit()
-    if player2['hits'] == 10:
-        print("P1 dWINS")
-        exit()
     hit_text2 = font.render(f"Player 2 Hits: {player2['hits']}", True, rocket_color_2)
     screen.blit(hit_text1, (20, 20))
     screen.blit(hit_text2, (20, 80))
