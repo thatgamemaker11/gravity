@@ -1,5 +1,8 @@
 import pygame
 import random
+
+
+
 # Initialize Pygame and setup the screen
 pygame.init()
 screen = pygame.display.set_mode((1920, 1080))
@@ -44,13 +47,16 @@ def create_rocket(x, y):
         "vel": pygame.math.Vector2(0, 0),     # Velocity vector
         "angle": 0,                           # Rotation angle
         "bullets": [],                        # List of bullets fired
-        "hits": 0                             # Number of times hit
+        "health": 20                                  # Number of times hit
     }
 
 # Initialize both players
 player1 = create_rocket(300, 500)
 player2 = create_rocket(1600, 500)
-
+rock = {
+    "pos": pygame.Vector2(random.randint(0, 1920), random.randint(0, 1080)),
+    "vel": pygame.Vector2(random.choice([-1, 1])*10000/Rsize, random.choice([-1, 1])*6000/Rsize),
+    "size": Rsize}
 # Game loop
 running = True
 while running:
@@ -144,12 +150,26 @@ while running:
             if 0 <= bullet["pos"].x <= 1920 and 0 <= bullet["pos"].y <= 1080:
                 # Check collision with opponent
                 if opponent_rect.collidepoint(bullet["pos"]):
-                    opponent["hits"] += 1
+                    opponent["health"] -= 1
                 else:
                     new_bullets.append(bullet)
-
         player["bullets"] = new_bullets
-
+    rock_rect = pygame.Rect(0, 0, rock["size"], rock["size"])
+    rock_rect.center = rock["pos"]
+    rock["pos"] += rock["vel"] * dt
+    if rock["pos"].x < 0:
+        rock["pos"].x = 2100
+    elif rock["pos"].x > 2100:
+        rock["pos"].x = 0
+    if rock["pos"].y < 0:
+        rock["pos"].y = 1200
+    elif rock["pos"].y > 1200:
+        rock["pos"].y = 0
+    for opponent in [player1, player2]:
+        opponent_rect = pygame.Rect(0, 0, *rocket_size)
+        opponent_rect.center = opponent["pos"]
+        if rock_rect.colliderect(opponent_rect):
+            opponent["health"] -= 5
     # ---- Drawing ----
     screen.fill(bg_color)  # Clear screen
 
@@ -168,13 +188,19 @@ while running:
             pygame.draw.circle(screen, bullet_color, bullet["pos"], 3)
 
     def draw_rock():
-        # Create triangle shape on surface
-        surface = pygame.Surface(Rock_size, pygame.SRCALPHA)
-        pygame.draw.polygon(surface, "gray", [(0,Rsize/3) ,(Rsize/3, 0),((Rsize/3)*2, 0),(Rsize, Rsize/3),(Rsize,(Rsize/3)*2),((Rsize/3)*2,Rsize),(Rsize/3,Rsize),(0,(Rsize/3)*2)])
-        # Rotate and position
+        surface = pygame.Surface((rock["size"], rock["size"]), pygame.SRCALPHA)
+        Rsize = rock["size"]
+        pygame.draw.polygon(surface, "gray", [
+            (0, Rsize / 3), (Rsize / 3, 0), ((Rsize / 3) * 2, 0), (Rsize, Rsize / 3),
+            (Rsize, (Rsize / 3) * 2), ((Rsize / 3) * 2, Rsize), (Rsize / 3, Rsize), (0, (Rsize / 3) * 2)
+        ])
         rotated = pygame.transform.rotate(surface, 0)
-        rect = rotated.get_rect(center=pos)
+        rect = rotated.get_rect(center=rock["pos"])
         screen.blit(rotated, rect.topleft)
+
+
+
+
 
     draw_rocket(player1, rocket_color_1)
     draw_rocket(player2, rocket_color_2)
@@ -182,14 +208,14 @@ while running:
 
     # Draw hit counters
     font = pygame.font.SysFont(None, 48)
-    hit_text1 = font.render(f"Player 1 Hits: {player1['hits']}", True, rocket_color_1)
-    if player1['hits'] == 10:
+    hit_text1 = font.render(f"Player 1 Health: {player1['health']}", True, rocket_color_1)
+    if player1['health'] == 0:
         print("P2 WINS")
         exit()
-    if player2['hits'] == 10:
-        print("P1 dWINS")
+    if player2['health'] == 0:
+        print("P1 WINS")
         exit()
-    hit_text2 = font.render(f"Player 2 Hits: {player2['hits']}", True, rocket_color_2)
+    hit_text2 = font.render(f"Player 2 Health: {player2['health']}", True, rocket_color_2)
     screen.blit(hit_text1, (20, 20))
     screen.blit(hit_text2, (20, 80))
 

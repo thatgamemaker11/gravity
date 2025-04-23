@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b7cf3d48-7a23-4be2-adbe-f6ad2e35e984" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/khvaf.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    </list>
+    <list id="6a73c90c-318c-4532-ab8d-d8ba19f4dda6" name="Changes by zspeakman" comment="">
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,6 +38,24 @@
     &quot;accountId&quot;: &quot;b8051b13-461b-4f41-9da6-a3531aeeb4eb&quot;
   }
 }</component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/main.py">
+      <ranges>
+        <range start1="2" end1="2" start2="2" end2="5" changelist="b7cf3d48-7a23-4be2-adbe-f6ad2e35e984" />
+        <range start1="46" end1="47" start2="49" end2="50" changelist="6a73c90c-318c-4532-ab8d-d8ba19f4dda6" />
+        <range start1="52" end1="53" start2="55" end2="59" changelist="b7cf3d48-7a23-4be2-adbe-f6ad2e35e984" />
+        <range start1="146" end1="147" start2="152" end2="153" changelist="6a73c90c-318c-4532-ab8d-d8ba19f4dda6" />
+        <range start1="149" end1="150" start2="155" end2="155" changelist="6a73c90c-318c-4532-ab8d-d8ba19f4dda6" />
+        <range start1="151" end1="152" start2="156" end2="172" changelist="6a73c90c-318c-4532-ab8d-d8ba19f4dda6" />
+        <range start1="170" end1="174" start2="190" end2="196" changelist="b7cf3d48-7a23-4be2-adbe-f6ad2e35e984" />
+        <range start1="175" end1="176" start2="197" end2="198" changelist="b7cf3d48-7a23-4be2-adbe-f6ad2e35e984" />
+        <range start1="178" end1="178" start2="200" end2="204" changelist="b7cf3d48-7a23-4be2-adbe-f6ad2e35e984" />
+        <range start1="184" end1="186" start2="210" end2="212" changelist="6a73c90c-318c-4532-ab8d-d8ba19f4dda6" />
+        <range start1="188" end1="190" start2="214" end2="216" changelist="b7cf3d48-7a23-4be2-adbe-f6ad2e35e984" />
+        <range start1="191" end1="192" start2="217" end2="218" changelist="6a73c90c-318c-4532-ab8d-d8ba19f4dda6" />
+      </ranges>
+    </file>
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -44,16 +64,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.khvaf.executor": "Run",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/nbarnes/Documents/GitHub/gravity"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.khvaf.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/nbarnes/Documents/GitHub/gravity&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
